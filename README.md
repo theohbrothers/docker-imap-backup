@@ -16,8 +16,14 @@ Dockerized [imap-backup](https://github.com/joeyates/imap-backup).
 ## Usage
 
 ```sh
-# See command line usage
-docker run --rm -it theohbrothers/docker-imap-backup:9.2.0 --help
+# Print command line usage
+docker run --rm -it theohbrothers/docker-imap-backup:9.2.0 help
+
+# Interactive setup
+docker run --rm -it -v imap:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 setup
+
+# Backup
+docker run --rm -it -v imap:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 backup
 ```
 
 ## Development
