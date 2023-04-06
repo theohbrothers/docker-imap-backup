@@ -1,6 +1,6 @@
 FROM ruby:3.2-alpine3.17
 
-# Install imap-backup
+RUN apk add --no-cache ca-certificates
 RUN set -eux; \
     gem install imap-backup -v 9.2.0; \
     imap-backup help > /dev/null
