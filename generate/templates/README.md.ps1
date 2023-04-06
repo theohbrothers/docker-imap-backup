@@ -30,8 +30,14 @@ $(
 ## Usage
 
 ``````sh
-# See command line usage
-docker run --rm -it theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) --help
+# Print command line usage
+docker run --rm -it theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) help
+
+# Interactive setup
+docker run --rm -it -v imap:/root/.imap-backup theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) setup
+
+# Backup
+docker run --rm -it -v imap:/root/.imap-backup theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) backup
 ``````
 
 

@@ -48,6 +48,14 @@ $VARIANTS_SHARED = @{
                     }
                 )
             }
+            'docker-entrypoint.sh' = @{
+                common = $true
+                passes = @(
+                    @{
+                        variables = @{}
+                    }
+                )
+            }
         }
     }
 }
