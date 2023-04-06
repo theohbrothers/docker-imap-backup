@@ -26,6 +26,4 @@ networks:
   default:
 
 volumes:
-  snappymail-volume:
-  mysql-volume:
   imap-backup:
