@@ -1,7 +1,7 @@
 @"
 FROM ruby:3.2-alpine3.17
 
-# Install imap-backup
+RUN apk add --no-cache ca-certificates
 RUN set -eux; \
     gem install imap-backup -v $( $VARIANT['_metadata']['package_version'] ); \
     imap-backup help > /dev/null
