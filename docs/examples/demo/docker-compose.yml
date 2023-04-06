@@ -74,7 +74,7 @@ services:
       - step-ca
 
   snappymail:
-    image: leojonathanoh/snappymail:merge
+    image: leojonathanoh/snappymail:pr-1
     ports:
       - 8888:8888
     volumes:
