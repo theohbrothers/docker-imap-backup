@@ -74,7 +74,7 @@ Send a few emails to yourself at `test@example.com`.
 
 `imap-backup` should have already been setup for you.
 
-View `imap-backup` config file:
+View `imap-backup` config:
 
 ```sh
 docker-compose exec imap-backup cat /root/.imap-backup/config.json
@@ -98,7 +98,7 @@ Print backup stats. You should see the correct number of emails for `INBOX` and 
 docker-compose exec imap-backup imap-backup stats test@example.com
 ```
 
-List the backup files:
+List backup files:
 
 ```sh
 docker-compose exec imap-backup ls -alR /root/.imap-backup

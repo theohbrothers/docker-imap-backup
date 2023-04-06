@@ -61,7 +61,7 @@ docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-
 # Print backup stats
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) stats <email>
 
-# View backup files. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
+# List backup files. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) ls -alR /root/.imap-backup
 
 # Start a shell
