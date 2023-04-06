@@ -16,6 +16,7 @@ Dockerized [imap-backup](https://github.com/joeyates/imap-backup).
 
 See the following docker-compose examples:
 
+- [Cron-based backup using crond](docs/examples/cron)
 - [Demo backup](docs/examples/demo)
 
 ```sh
