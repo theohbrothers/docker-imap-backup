@@ -21,7 +21,7 @@ For a simple backup demo, see [this](docs/examples/simple) docker-compose exampl
 docker run --rm -it theohbrothers/docker-imap-backup:9.2.0 help
 
 # Interactive setup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/setup.md
-# 1. to add account
+# 1. add account
 #   1. email
 #   2. password
 #   3. server

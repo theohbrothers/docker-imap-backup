@@ -39,7 +39,7 @@ For a simple backup demo, see [this](docs/examples/simple) `docker-compose` exam
 docker run --rm -it theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) help
 
 # Interactive setup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/setup.md
-# 1. to add account
+# 1. add account
 #   1. email
 #   2. password
 #   3. server
