@@ -12,18 +12,39 @@ Dockerized [imap-backup](https://github.com/joeyates/imap-backup).
 |:-------:|:---------:|
 | `:9.2.0`, `:latest` | [View](variants/9.2.0) |
 
-
 ## Usage
+
+For a simple backup demo, see [this](docs/examples/simple) docker-compose example.
 
 ```sh
 # Print command line usage
 docker run --rm -it theohbrothers/docker-imap-backup:9.2.0 help
 
-# Interactive setup
-docker run --rm -it -v imap:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 setup
+# Interactive setup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/setup.md
+# 1. to add account
+#   1. email
+#   2. password
+#   3. server
+#   4. connection options. For self-signed certs, use JSON: {"ssl": {"verify_mode": 0}}
+#   5. test connection
+#   13. Press (q) return to main menu
+# 3. save and exit
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 setup
 
-# Backup
-docker run --rm -it -v imap:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 backup
+# Backup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 backup
+
+# Check backup integrity (not available on <= 9.2.0)
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 local check
+
+# Print backup stats
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 stats <email>
+
+# View backup files. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 ls -alR /root/.imap-backup
+
+# Start a shell
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 sh
 ```
 
 ## Development
