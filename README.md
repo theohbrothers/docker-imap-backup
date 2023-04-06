@@ -14,7 +14,9 @@ Dockerized [imap-backup](https://github.com/joeyates/imap-backup).
 
 ## Usage
 
-For a simple backup demo, see [this](docs/examples/simple) docker-compose example.
+See the following docker-compose examples:
+
+- [Demo backup](docs/examples/demo)
 
 ```sh
 # Print command line usage
