@@ -1,0 +1,31 @@
+version: '2'
+services:
+  imap-backup:
+    image: theohbrothers/docker-imap-backup:9.2.0
+    volumes:
+      - imap-backup:/root/.imap-backup
+    networks:
+      - default
+    stop_signal: SIGKILL
+    entrypoint:
+      - /bin/sh
+    command:
+      - -c
+      - |
+          set -eu
+
+          # Customize your cron schedule, use https://crontab.guru
+          crontab - <<'EOF'
+          0 0 * * * imap-backup backup
+          EOF
+
+          echo "Running crond"
+          exec crond -f
+
+networks:
+  default:
+
+volumes:
+  snappymail-volume:
+  mysql-volume:
+  imap-backup:
