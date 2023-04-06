@@ -1,4 +1,4 @@
-# Simple example
+# Demo backup
 
 In this `docker-compose` example, we will:
 
