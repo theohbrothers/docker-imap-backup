@@ -6,6 +6,8 @@
 
 Dockerized [imap-backup](https://github.com/joeyates/imap-backup).
 
+imap-backup syncs IMAP as `.mbox` backup files, in contrast to [isync](https://github.com/theohbrothers/docker-isync) which syncs IMAP as a `Maildir` (emails as individual files).
+
 ## Tags
 
 | Tag | Dockerfile Build Context |
@@ -14,9 +16,9 @@ Dockerized [imap-backup](https://github.com/joeyates/imap-backup).
 
 ## Usage
 
-See the following docker-compose examples:
+See the following `docker-compose` examples:
 
-- [Cron-based backup using crond](docs/examples/cron)
+- [Cron-based backup using `crond`](docs/examples/cron)
 - [Demo backup](docs/examples/demo)
 
 ```sh
