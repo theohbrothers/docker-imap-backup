@@ -17,10 +17,10 @@ docker-compose up
 
 The following services are now running:
 
-- `step-ca` as our self-signed CA
+- `step-ca` as our self-signed CA, to sign self-signed certs for `docker-mailserver`
 - `docker-mailserver` as mail server
 - `snappymail` as web email client
-- `imap-backup` as IMAP backup
+- `imap-backup` as IMAP backup client
 
 ### 1. Create email account
 
