@@ -31,6 +31,9 @@ docker run --rm -it theohbrothers/docker-imap-backup:9.2.0 help
 # 3. save and exit
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 setup
 
+# View backup config
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 cat /root/.imap-backup/config.json
+
 # Backup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.2.0 backup
 

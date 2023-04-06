@@ -49,6 +49,9 @@ docker run --rm -it theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_
 # 3. save and exit
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) setup
 
+# View backup config
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) cat /root/.imap-backup/config.json
+
 # Backup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:$( $VARIANTS | ? { $_['tag_as_latest'] } | % { $_['tag'] } ) backup
 
