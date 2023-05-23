@@ -1,4 +1,5 @@
 $local:PACKAGE_VERSIONS = @(
+    '9.3.1'
     '9.2.0'
 )
 # Docker image variants' definitions
