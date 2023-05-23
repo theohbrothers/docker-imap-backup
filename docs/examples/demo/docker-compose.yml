@@ -83,7 +83,7 @@ services:
       - default
 
   imap-backup:
-    image: theohbrothers/docker-imap-backup:9.2.0
+    image: theohbrothers/docker-imap-backup:latest
     volumes:
       - imap-backup:/root/.imap-backup
     networks:
