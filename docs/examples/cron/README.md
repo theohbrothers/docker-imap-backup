@@ -10,10 +10,10 @@ docker-compose up
 
 At entrypoint:
 
-- A crontab is created that runs `mail-backup` daily at `00:00`
+- A crontab is created that runs `imap-backup` daily at `00:00`
 - `crond` is started
 
-Now, setup `mail-backup` for each email account you want to backup, e.g. `your@domain.com`:
+Now, setup `imap-backup` for each email account you want to backup, e.g. `your@domain.com`:
 
 ```sh
 # Interactive setup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/setup.md
