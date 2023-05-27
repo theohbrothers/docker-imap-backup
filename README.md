@@ -66,6 +66,9 @@ docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-
 # List backup files. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.3.1 ls -alR /root/.imap-backup
 
+# Restore emails from backup to IMAP server. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/restore.md
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.3.1 restore <email>
+
 # Start a shell
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.3.1 sh
 ```
