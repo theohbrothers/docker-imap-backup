@@ -54,7 +54,7 @@ In `snappymail` Admin Panel, click `Domains`, and click `+ Add Domain` button:
   - In `Server` box, enter `smtp.example.com`
   - In `Secure` dropdown, select `SSL/TLS`
   - In `Port` , enter `465`
-  - In `Timeout`, enter `60
+  - In `Timeout`, enter `60`
   - Uncheck `Use short login`
   - Check `Use authentication`
   - Check `Use login as sender`
@@ -72,7 +72,7 @@ Send a few emails to yourself at `test@example.com`.
 
 ### 4. Run IMAP backup
 
-`imap-backup` should have already been setup for you.
+`imap-backup` config should have already been setup for `test@example.com` as part of `docker-compose up`.
 
 View `imap-backup` config:
 
@@ -104,8 +104,24 @@ List backup files:
 docker-compose exec imap-backup ls -alR /root/.imap-backup
 ```
 
-Start a shell:
+The backup is successful.
+
+### 5. Delete all emails in `Inbox`
+
+In snappymail, delete all emails in `Inbox` and `Sent` folders. Delete emails end up in the `Trash` folder.
+
+### 6. Restore all emails to IMAP server
+
+Restore all emails from the backup to the IMAP server (should take only 1 second):
 
 ```sh
-docker-compose exec imap-backup sh
+docker-compose exec imap-backup imap-backup restore test@example.com
 ```
+
+Optional: To see verbose logs, use the `--verbose` flag:
+
+```sh
+docker-compose exec imap-backup imap-backup restore test@example.com --verbose
+```
+
+See that all emails of `Inbox` and `Sent` folders are restored. The `Trash` folder remains with previously deleted emails.
