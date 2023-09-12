@@ -1,4 +1,4 @@
-$local:VERSIONS = Get-Content $PSScriptRoot/versions.json -Encoding utf8 -raw | ConvertFrom-Json
+$local:VERSIONS = ConvertFrom-Json (Get-Content $PSScriptRoot/versions.json -Encoding utf8 -raw)
 
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(
