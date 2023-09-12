@@ -45,14 +45,9 @@ try {
     $env:GITHUB_TOKEN = if ($env:GITHUB_TOKEN) { $env:GITHUB_TOKEN } else { (Get-Content ~/.git-credentials -Encoding utf8 -Force) -split "`n" | % { if ($_ -match '^https://[^:]+:([^:]+)@github.com') { $matches[1] } } | Select-Object -First 1 }
 
     # Get my versions from generate/definitions/versions.json
-    $versions = Get-Content $PSScriptRoot/generate/definitions/versions.json -Encoding utf8 | ConvertFrom-Json -Depth 100
+    $versions = Get-Content $PSScriptRoot/generate/definitions/versions.json -Encoding utf8 | ConvertFrom-Json
     # Get new versions
-    $versionsNew = @(
-        & {
-            $v = (Invoke-WebRequest https://rubygems.org/api/v1/versions/imap-backup.json).Content | ConvertFrom-Json
-            $v | % { $_.number } | ? { $_ -match '^\d+\.\d+\.\d+$' }
-        }
-    )
+    $versionsNew = (Invoke-WebRequest https://rubygems.org/api/v1/versions/imap-backup.json).Content | ConvertFrom-Json | % { $_.number } | ? { $_ -match '^\d+\.\d+\.\d+$' }
     # Get changed versions
     $versionsChanged = Get-VersionsChanged -Versions $versions -VersionsNew $versionsNew -AsObject -Descending
     # Update versions.json, and open PRs with CI disabled
