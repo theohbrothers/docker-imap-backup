@@ -1,27 +1,8 @@
-$local:PACKAGE_VERSIONS = @(
-    '11.0.1'
-    '11.0.0'
-    '10.0.1'
-    '9.3.1'
-    '9.3.0'
-    '9.2.0'
-    '9.1.1'
-    '9.1.0'
-    '9.0.2'
-    '9.0.0'
-    '8.0.2'
-    '8.0.1'
-    '8.0.0'
-    '7.0.2'
-    '6.3.0'
-    '6.2.1'
-    '6.1.0'
-    '6.0.1'
-    '6.0.0'
-)
+$local:VERSIONS = Get-Content $PSScriptRoot/versions.json -Encoding utf8 -raw | ConvertFrom-Json
+
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(
-    foreach ($v in $local:PACKAGE_VERSIONS) {
+    foreach ($v in $local:VERSIONS) {
         @{
             package_version = $v
             subvariants = @(
@@ -46,7 +27,7 @@ $VARIANTS = @(
                         $variant['package_version']
                         $subVariant['components'] | ? { $_ }
                 ) -join '-'
-                tag_as_latest = if ($variant['package_version'] -eq $local:PACKAGE_VERSIONS[0] -and $subVariant['components'].Count -eq 0) { $true } else { $false }
+                tag_as_latest = if ($variant['package_version'] -eq $local:VERSIONS[0] -and $subVariant['components'].Count -eq 0) { $true } else { $false }
             }
         }
     }
