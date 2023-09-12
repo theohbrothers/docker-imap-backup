@@ -49,7 +49,8 @@ try {
     # Get new versions
     $versionsNew = (Invoke-WebRequest https://rubygems.org/api/v1/versions/imap-backup.json).Content | ConvertFrom-Json | % { $_.number } | ? { $_ -match '^\d+\.\d+\.\d+$' }
     # Get changed versions
-    $versionsChanged = Get-VersionsChanged -Versions $versions -VersionsNew $versionsNew -AsObject -Descending
+    $changeScope = 'patch'
+    $versionsChanged = Get-VersionsChanged -Versions $versions -VersionsNew $versionsNew -ChangeScope $changeScope -AsObject -Descending
     # Update versions.json, and open PRs with CI disabled
     $prs = Update-DockerImageVariantsVersions -VersionsChanged $versionsChanged -CommitPreScriptblock { Move-Item .github .github.disabled -Force } -PR:$PR -WhatIf:$WhatIfPreference
     # Update versions.json, update PRs with CI, merge PRs one at a time, release and close milestone
