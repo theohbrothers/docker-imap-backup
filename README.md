@@ -16,6 +16,7 @@ imap-backup syncs IMAP as `.mbox` backup files, in contrast to [isync](https://g
 | `:11.0.1` | [View](variants/11.0.1) |
 | `:11.0.0` | [View](variants/11.0.0) |
 | `:10.0.1` | [View](variants/10.0.1) |
+| `:10.0.0` | [View](variants/10.0.0) |
 | `:9.3.1` | [View](variants/9.3.1) |
 | `:9.3.0` | [View](variants/9.3.0) |
 | `:9.2.0` | [View](variants/9.2.0) |
