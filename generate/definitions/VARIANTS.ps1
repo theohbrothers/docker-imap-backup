@@ -21,6 +21,7 @@ $VARIANTS = @(
                     package_version = $variant['package_version']
                     platforms = 'linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x'
                     components = $subVariant['components']
+                    job_group_key = $variant['package_version']
                 }
                 # Docker image tag. E.g. '3.8-curl'
                 tag = @(
