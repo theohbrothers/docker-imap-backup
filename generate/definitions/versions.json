@@ -28,5 +28,3 @@
     "versionsNewScript": "Invoke-RestMethod https://rubygems.org/api/v1/versions/imap-backup.json | % { $_.number } | ? { $_ -match '^\\d+\\.\\d+\\.\\d+$' } | ? { $_ -notin @( '10.0.0' ) }  # Exclude 10.0.0 since it is a bad release. See: https://github.com/joeyates/imap-backup/releases/tag/v10.0.1"
   }
 }
-
-
