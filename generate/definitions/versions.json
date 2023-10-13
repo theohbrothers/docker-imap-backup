@@ -2,7 +2,6 @@
   "imap-backup": {
     "versions": [
       "14.1.1",
-      "14.1.0",
       "14.0.0",
       "13.4.0",
       "13.3.0",
@@ -13,27 +12,19 @@
       "12.0.0",
       "11.1.0",
       "11.0.1",
-      "11.0.0",
       "10.0.1",
       "9.3.2",
-      "9.3.1",
-      "9.3.0",
       "9.2.0",
       "9.1.1",
-      "9.1.0",
       "9.0.2",
-      "9.0.0",
       "8.0.2",
-      "8.0.1",
-      "8.0.0",
       "7.0.2",
       "6.3.0",
       "6.2.1",
       "6.1.0",
-      "6.0.1",
-      "6.0.0"
+      "6.0.1"
     ],
-    "versionsChangeScope": "patch",
+    "versionsChangeScope": "minor",
     "versionsNewScript": "Invoke-RestMethod https://rubygems.org/api/v1/versions/imap-backup.json | % { $_.number } | ? { $_ -match '^\\d+\\.\\d+\\.\\d+$' } | ? { $_ -notin @( '10.0.0' ) }  # Exclude 10.0.0 since it is a bad release. See: https://github.com/joeyates/imap-backup/releases/tag/v10.0.1"
   }
 }
