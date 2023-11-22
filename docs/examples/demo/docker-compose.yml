@@ -41,8 +41,8 @@ services:
   # Mail server
   # See: https://docker-mailserver.github.io/docker-mailserver/latest
   docker-mailserver:
-    image: docker.io/mailserver/docker-mailserver:latest
-    domainname: example.com
+    image: docker.io/mailserver/docker-mailserver:12
+    domainname: mail.example.com
     environment:
       - ENABLE_SPAMASSASSIN=0
       - ENABLE_CLAMAV=0
@@ -57,9 +57,11 @@ services:
       - SSL_CERT_PATH=/certs/mail.example.com-cert.pem
       - SSL_KEY_PATH=/certs/mail.example.com-key.pem
     volumes:
-      - maildata:/var/mail
-      - mailstate:/var/mail-state
-      - certs/:/certs/
+      - certs:/certs
+      - dms-mail-data:/var/mail
+      - dms-mail-state:/var/mail-state
+      - dms-mail-logs/:/var/log/mail
+      - dms-config:/tmp/docker-mailserver
     networks:
       default:
         aliases:
@@ -67,9 +69,6 @@ services:
           - mail.example.com
           - imap.example.com
           - smtp.example.com
-    cap_add:
-      - NET_ADMIN
-      - SYS_PTRACE
     depends_on:
       - step-ca
 
@@ -126,7 +125,9 @@ networks:
 
 volumes:
   certs:
-  maildata:
-  mailstate:
+  dms-mail-data:
+  dms-mail-state:
+  dms-mail-logs:
+  dms-config:
   snappymail:
   imap-backup:
