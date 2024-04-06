@@ -3,7 +3,9 @@ FROM ruby:3.2-alpine3.17
 
 RUN apk add --no-cache ca-certificates
 RUN set -eux; \
+    apk add --no-cache alpine-sdk; \
     gem install imap-backup -v $( $VARIANT['_metadata']['package_version'] ); \
+    apk del --no-cache alpine-sdk; \
     imap-backup help > /dev/null
 
 WORKDIR /root
