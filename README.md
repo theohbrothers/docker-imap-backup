@@ -12,7 +12,8 @@ imap-backup syncs IMAP as `.mbox` backup files, in contrast to [isync](https://g
 
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
-| `:14.6.1`, `:latest` | [View](variants/14.6.1) |
+| `:15.0.1`, `:latest` | [View](variants/15.0.1) |
+| `:14.6.1` | [View](variants/14.6.1) |
 | `:14.5.2` | [View](variants/14.5.2) |
 | `:14.4.5` | [View](variants/14.4.5) |
 | `:14.3.0` | [View](variants/14.3.0) |
@@ -49,7 +50,7 @@ See the following `docker-compose` examples:
 
 ```sh
 # Print command line usage
-docker run --rm -it theohbrothers/docker-imap-backup:14.6.1 help
+docker run --rm -it theohbrothers/docker-imap-backup:15.0.1 help
 
 # Interactive setup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/setup.md
 # 1. add account
@@ -60,28 +61,28 @@ docker run --rm -it theohbrothers/docker-imap-backup:14.6.1 help
 #   5. test connection
 #   13. Press (q) return to main menu
 # 3. save and exit
-docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:14.6.1 setup
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:15.0.1 setup
 
 # View backup config
-docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:14.6.1 cat /root/.imap-backup/config.json
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:15.0.1 cat /root/.imap-backup/config.json
 
 # Backup. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
-docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:14.6.1 backup
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:15.0.1 backup
 
 # Check backup integrity (not available on <= 9.2.0)
-docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:14.6.1 local check
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:15.0.1 local check
 
 # Print backup stats
-docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:14.6.1 stats <email>
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:15.0.1 stats <email>
 
 # List backup files. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/backup.md
-docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:14.6.1 ls -alR /root/.imap-backup
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:15.0.1 ls -alR /root/.imap-backup
 
 # Restore emails from backup to IMAP server. See: https://github.com/joeyates/imap-backup/blob/main/docs/commands/restore.md
 docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:9.3.1 restore <email>
 
 # Start a shell
-docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:14.6.1 sh
+docker run --rm -it -v imap-backup:/root/.imap-backup theohbrothers/docker-imap-backup:15.0.1 sh
 ```
 
 ## Development
