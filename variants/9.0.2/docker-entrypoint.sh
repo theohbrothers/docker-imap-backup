@@ -6,8 +6,6 @@ if [ $# -gt 0 ]; then
     if echo "$SUBCOMMANDS" | grep "^$1$" > /dev/null; then
         exec imap-backup "$@"
     fi
-else
-    exec imap-backup "$@"
 fi
 
 exec "$@"
