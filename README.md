@@ -13,6 +13,7 @@ imap-backup syncs IMAP as `.mbox` backup files, in contrast to [isync](https://g
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
 | `:16.0.0`, `:latest` | [View](variants/16.0.0) |
+| `:15.1.3` | [View](variants/15.1.3) |
 | `:15.0.2` | [View](variants/15.0.2) |
 | `:14.6.1` | [View](variants/14.6.1) |
 | `:14.5.2` | [View](variants/14.5.2) |
