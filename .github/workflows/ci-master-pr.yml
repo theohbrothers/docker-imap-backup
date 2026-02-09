@@ -33,7 +33,7 @@ jobs:
       run: |
         git diff --exit-code
 
-  build-16-4-1:
+  build-16-4-2:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -64,9 +64,9 @@ jobs:
       uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-16.4.1-${{ github.sha }}
+        key: ${{ runner.os }}-buildx-16.4.2-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-buildx-16.4.1-
+          ${{ runner.os }}-buildx-16.4.2-
           ${{ runner.os }}-buildx-
 
     - name: Login to Docker Hub registry
@@ -79,7 +79,7 @@ jobs:
 
     # This step generates the docker tags
     - name: Prepare
-      id: prep-16-4-1
+      id: prep-16-4-2
       run: |
         set -e
 
@@ -92,7 +92,7 @@ jobs:
         # Generate docker image tags
         # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
         # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
-        VARIANT="16.4.1"
+        VARIANT="16.4.2"
         REF_VARIANT="${REF}-${VARIANT}"
         REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
 
@@ -102,45 +102,45 @@ jobs:
         echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
         echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
 
-    - name: 16.4.1 - Build (PRs)
+    - name: 16.4.2 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
       uses: docker/build-push-action@v5
       with:
-        context: variants/16.4.1
+        context: variants/16.4.2
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: false
         tags: |
-          ${{ github.repository }}:${{ steps.prep-16-4-1.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-16-4-1.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-16-4-2.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-16-4-2.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 16.4.1 - Build and push (master)
+    - name: 16.4.2 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
       uses: docker/build-push-action@v5
       with:
-        context: variants/16.4.1
+        context: variants/16.4.2
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-16-4-1.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-16-4-1.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-16-4-2.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-16-4-2.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 16.4.1 - Build and push (release)
+    - name: 16.4.2 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v5
       with:
-        context: variants/16.4.1
+        context: variants/16.4.2
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-16-4-1.outputs.VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-16-4-1.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-16-4-1.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-16-4-2.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-16-4-2.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-16-4-2.outputs.REF_SHA_VARIANT }}
           ${{ github.repository }}:latest
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
@@ -4082,7 +4082,7 @@ jobs:
 
   update-draft-release:
     needs:
-      - build-16-4-1
+      - build-16-4-2
       - build-16-3-0
       - build-16-2-0
       - build-16-1-0
@@ -4129,7 +4129,7 @@ jobs:
 
   publish-draft-release:
     needs:
-      - build-16-4-1
+      - build-16-4-2
       - build-16-3-0
       - build-16-2-0
       - build-16-1-0
@@ -4178,7 +4178,7 @@ jobs:
 
   update-dockerhub-description:
     needs:
-      - build-16-4-1
+      - build-16-4-2
       - build-16-3-0
       - build-16-2-0
       - build-16-1-0
